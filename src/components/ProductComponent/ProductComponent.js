@@ -1,5 +1,6 @@
 import React, {  useState } from 'react'
 import './ProductComponent.css'
+import { BE_URL } from '../../config/info'
 
 function ProductComponent({productItem}) {
 
@@ -30,7 +31,7 @@ function ProductComponent({productItem}) {
   const addingToCartHandler = async() => {
     if (selectedQuantity > 0)
     {
-      const response = await fetch(`http://localhost:3500/api/v1/shoppingCart/cart/`,{
+      const response = await fetch(`${BE_URL}/shoppingCart/cart/`,{
         method:'POST',
         crossDomain: true,
         headers: {
@@ -65,13 +66,13 @@ return (
             <p className="status">
               {productItem.productCategory} ({productItem.productID})
             </p>
-            <img src={productItem.productImagePath} alt=''/>
+            <img src={`${BE_URL}/shoppingCart/${productItem.productImagePath}`} alt=''/>
             <p className="title">Price</p>
             <p className='author'>Rs. {productItem.productCost}</p>
             <p className="availability">Available stock : {stockQuantity}</p>
             <div className='counter'>
             <button className='counter-button' onClick={decrementHandler}>-</button>
-            <p class='counter-number'>{selectedQuantity}</p>
+            <p className='counter-number'>{selectedQuantity}</p>
             <button className='counter-button' onClick={incrementHandler}>+</button>
             </div>
             <button className='submit-button' onClick={addingToCartHandler}>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './AddNewProductComponent.css'
+import { BE_URL } from '../../config/info'
 
 class AddNewProductComponent extends Component {
   constructor(props)
@@ -57,7 +58,7 @@ class AddNewProductComponent extends Component {
         formData.append('productStockQuantity',this.state.productStockQuantity)
         formData.append('productImage',this.state.productImage)
 
-        fetch('http://localhost:3500/api/v1/shoppingCart/upload',{
+        fetch(`${BE_URL}/shoppingCart/upload`,{
         method:'POST',
         crossDomain: true,
         body: formData

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './GetCartItemsComponent.css'
 import CartItemComponent from '../CartItemComponent/CartItemComponent'
+import { BE_URL } from '../../config/info'
 
 
 function GetCartItemsComponent() {
@@ -8,13 +9,13 @@ function GetCartItemsComponent() {
     const [cartItems, setCartItems] = useState([])
 
     const fetchAllCartItems  = async() => {
-        const response = await fetch('http://localhost:3500/api/v1/shoppingCart/cart')
+        const response = await fetch(`${BE_URL}/shoppingCart/cart`)
         const data = await response.json()
         setCartItems(data)
     }
 
     const fetchCartTotal  = async() => {
-        const response = await fetch('http://localhost:3500/api/v1/shoppingCart/cartTotal')
+        const response = await fetch(`${BE_URL}/shoppingCart/cartTotal`)
         const data = await response.json()
         // console.log(response);
         console.log(data);
@@ -35,7 +36,7 @@ function GetCartItemsComponent() {
 
     const checkOutHandler = async() => {
         setTotalCartCost(0)
-        const response = await fetch(`http://localhost:3500/api/v1/shoppingCart/checkout`,{
+        const response = await fetch(`${BE_URL}/shoppingCart/checkout`,{
             method:'DELETE'
         })
         console.log(response);
